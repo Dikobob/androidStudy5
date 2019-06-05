@@ -76,6 +76,12 @@ public class PhotoGalleryFragment extends Fragment {
         Log.i(TAG, "Background thread destroyed");
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mThumbnailDownloader.clearQueue();
+    }
+
     private class FetchItemsTask extends AsyncTask<Void, Void, List<GalleryItem>> {
 
         @Override
