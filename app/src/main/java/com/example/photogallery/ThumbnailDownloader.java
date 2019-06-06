@@ -1,5 +1,6 @@
 package com.example.photogallery;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -24,7 +25,7 @@ public class ThumbnailDownloader<T> extends HandlerThread {
 
     public ThumbnailDownloader(Handler responseHandler) {
         super(TAG);
-        mRequestHandler = responseHandler;
+        mResponseHandler = responseHandler;
     }
 
     @Override
@@ -49,6 +50,7 @@ public class ThumbnailDownloader<T> extends HandlerThread {
         mRequestMap.clear();
     }
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onLooperPrepared() {
         mRequestHandler = new Handler() {
